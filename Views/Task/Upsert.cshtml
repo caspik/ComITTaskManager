@@ -25,13 +25,13 @@
     </div>
 
     <div class="form-group">
-        <label asp-for="TaskStartDate">Description</label>
-        <input type="text" class="form-control" asp-for="TaskStartDate"/>
+        <label asp-for="TaskStartDate">Start_Date</label>
+        <input type="date" value="@DateTime.Now.ToString("yyyy-MM-dd")" class="form-control" asp-for="TaskStartDate"/>
     </div>
 
     <div class="form-group">
-        <label asp-for="TaskEndDate">Description</label>
-        <input type="text" class="form-control" asp-for="TaskEndDate"/>
+        <label asp-for="TaskEndDate">End_Date</label>
+        <input type="date" value="@DateTime.Now.ToString("yyyy-MM-dd")" class="form-control" asp-for="TaskEndDate"/>
     </div>
 
     <button type="submit" class="btn btn-success">@buttonText</button>
