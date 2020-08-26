@@ -1,17 +1,35 @@
 ﻿@model List<TaskList>
+
 <h3>Tasks</h3>
 <hr/>
 <div>
-    <table>
+    <table class="table table-bordered">>
         <thead>
             <tr>
                 <th>Name</th>
-                <th>Start Date</th>
-                <th>End Date</th>
+                <th>Start_Date</th>
+                <th>End_Date</th>
                 <th></th>
             </tr>        
         </thead>
-    </table>  
+        <tbody>
+            @foreach (var item in Model) {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.TaskStartDate</td>
+                    <td>@item.TaskEndDate</td>
+                    <td>0</td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                    </td>
+                </tr>
+            }
+        
+        </tbody>
+    </table>
 </div>
-    
+
+<div>
+    <a asp-controller="Task" asp-action="Create">Create new task</a>
+</div>
         

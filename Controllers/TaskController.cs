@@ -13,6 +13,7 @@ namespace TaskManager.Controllers
 {
     public class TaskController : Controller
     {
+        IStoreTasks _taskStorage;
         IStoreTasks _tasksStorage;
 
         public TaskController(IStoreTasks myTaskStorage)
@@ -24,6 +25,25 @@ namespace TaskManager.Controllers
         {
             var tasks = _tasksStorage.GetAllItems();
             return View(tasks);
+        }
+
+        public IActionResult Details(Guid id) {
+            var item = _taskStorage.GetById(id);
+            return View(item);
+        }
+
+        public IActionResult Create() {
+            return View("Upsert");
+        }
+
+        [HttpPost]
+        public IActionResult Create(TaskList newTask) {
+            newTask.Id = Guid.NewGuid();
+            //newItem.Batches = new List<Batch>();
+            newTask.IsDeleted = false;
+            //newItem.UserId = UserId();
+            _taskStorage.CreateTaskList(newTask);
+            return RedirectToAction("Index");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
